@@ -1,5 +1,8 @@
 FROM codenvy/angular-yeoman
 
+EXPOSE 8080
+ENV CODENVY_APP_PORT_8080_HTTP 8080
+
 ADD $app$/package.json /tmp/application/package.json
 
 RUN cd /tmp/application && npm install
