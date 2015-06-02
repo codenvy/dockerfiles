@@ -22,7 +22,7 @@ RUN apt-get update && \
     usermod -u 1000 user && \
     echo "secret\nsecret" | passwd user && apt-get clean && \
     sudo rm -rf /var/lib/apt/lists/* && \
-    RUN sudo chown user:user -R /opt && \
+    sudo chown user:user -R /opt && \
     cd /opt && unzip shellinabox.zip && \
     rm -rf /opt/shellinabox.zip && \
     sudo chmod 755 /entrypoint.sh
