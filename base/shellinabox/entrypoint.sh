@@ -19,6 +19,6 @@ else
   theme="/opt/shellinabox/shellinabox/black-on-white.css"
 fi
 
-sudo /opt/shellinabox/shellinaboxd -b --css $theme --no-beep --service $service
+sudo /opt/shellinabox/shellinaboxd -b --css "$theme" --no-beep --service "$service"
 
 exec "$@"
