@@ -21,7 +21,7 @@ RUN sudo apt-get update && sudo apt-get install -y \
     sudo rm -rf /var/lib/apt/lists/*
 
 # configure Apache to change document root and allow all for that path, allow mod rewrite and install composer
-RUN sudo sed -i 's/\/var\/www\/html/\/projects/g'  /etc/apache2/sites-available/000-default.conf && \
+RUN sudo sed -i 's/\/var\/www\/html/\/projects/g'  /etc/apache2/sites-enabled/000-default.conf && \
     sudo sed -i 's/\/var\/www\//\/projects\//g' /etc/apache2/apache2.conf && \
     sudo sed -i 's/None/All/g' /etc/apache2/apache2.conf && \
     echo "ServerName localhost" | sudo tee -a /etc/apache2/apache2.conf && \
