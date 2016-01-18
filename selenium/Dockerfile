@@ -7,7 +7,7 @@ RUN apt-get update && \
     useradd -u 1000 -G users,sudo -d /home/user --shell /bin/bash -m user && \
     echo "secret\nsecret" | passwd user
 
-# install xserver, blackbox, Chrome, Selenium webdriver
+# install java, xserver, blackbox, Chrome, Selenium webdriver
 
 USER user
 
@@ -20,6 +20,22 @@ USER root
 RUN echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list
 
 USER user
+
+
+ENV JAVA_VERSION=8u45 \
+    JAVA_VERSION_PREFIX=1.8.0_45 \
+    
+ENV JAVA_HOME=/opt/jdk$JAVA_VERSION_PREFIX \
+
+ENV PATH=$JAVA_HOME/bin
+
+  wget \
+  --no-cookies \
+  --no-check-certificate \
+  --header "Cookie: oraclelicense=accept-securebackup-cookie" \
+  -qO- \
+  "http://download.oracle.com/otn-pub/java/jdk/$JAVA_VERSION-b14/jdk-$JAVA_VERSION-linux-x64.tar.gz" | sudo tar -zx -C /opt/ && \
+
 
 RUN sudo apt-get update -qqy && \
   sudo apt-get -qqy install \
