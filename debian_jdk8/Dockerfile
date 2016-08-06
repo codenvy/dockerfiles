@@ -24,8 +24,9 @@ LABEL che:server:8080:ref=tomcat8 che:server:8080:protocol=http che:server:8000:
 
 
 ENV MAVEN_VERSION=3.3.9 \
-    JAVA_VERSION=8u45 \
-    JAVA_VERSION_PREFIX=1.8.0_45 \
+    JAVA_VERSION=8u101 \
+    JAVA_BUILD=13 \
+    JAVA_VERSION_PREFIX=1.8.0_101 \
     TOMCAT_HOME=/home/user/tomcat8
 
 ENV JAVA_HOME=/opt/jdk$JAVA_VERSION_PREFIX \
@@ -39,7 +40,7 @@ RUN mkdir /home/user/cbuild /home/user/tomcat8 /home/user/apache-maven-$MAVEN_VE
   --no-check-certificate \
   --header "Cookie: oraclelicense=accept-securebackup-cookie" \
   -qO- \
-  "http://download.oracle.com/otn-pub/java/jdk/$JAVA_VERSION-b14/jdk-$JAVA_VERSION-linux-x64.tar.gz" | sudo tar -zx -C /opt/ && \
+  "http://download.oracle.com/otn-pub/java/jdk/$JAVA_VERSION-b$JAVA_BUILD/jdk-$JAVA_VERSION-linux-x64.tar.gz" | sudo tar -zx -C /opt/ && \
   wget -qO- "http://apache.ip-connect.vn.ua/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz" | tar -zx --strip-components=1 -C /home/user/apache-maven-$MAVEN_VERSION/
 
 ENV TERM xterm
