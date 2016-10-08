@@ -6,6 +6,14 @@
 # Contributors:
 # Codenvy, S.A. - initial API and implementation
 
+# Copyright (c) 2012-2016 Codenvy, S.A.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Eclipse Public License v1.0
+# which accompanies this distribution, and is available at
+# http://www.eclipse.org/legal/epl-v10.html
+# Contributors:
+# Codenvy, S.A. - initial API and implementation
+
 FROM ubuntu
 EXPOSE 4403 8000 8080 9876 22
 RUN apt-get update && \
@@ -28,8 +36,9 @@ LABEL che:server:8080:ref=tomcat8 che:server:8080:protocol=http che:server:8000:
 
 
 ENV MAVEN_VERSION=3.3.9 \
-    JAVA_VERSION=8u45 \
-    JAVA_VERSION_PREFIX=1.8.0_45 \
+    JAVA_VERSION=8u102 \
+    JAVA_VERSION_PREFIX=1.8.0_102 \
+    JAVA_VERSION_BUILD=b14 \
     TOMCAT_HOME=/home/user/tomcat8
 
 ENV JAVA_HOME=/opt/jdk$JAVA_VERSION_PREFIX \
@@ -43,7 +52,7 @@ RUN mkdir /home/user/cbuild /home/user/tomcat8 /home/user/apache-maven-$MAVEN_VE
   --no-check-certificate \
   --header "Cookie: oraclelicense=accept-securebackup-cookie" \
   -qO- \
-  "http://download.oracle.com/otn-pub/java/jdk/$JAVA_VERSION-b14/jdk-$JAVA_VERSION-linux-x64.tar.gz" | sudo tar -zx -C /opt/ && \
+  "http://download.oracle.com/otn-pub/java/jdk/$JAVA_VERSION-$JAVA_VERSION_BUILD/jdk-$JAVA_VERSION-linux-x64.tar.gz" | sudo tar -zx -C /opt/ && \
   wget -qO- "http://apache.ip-connect.vn.ua/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz" | tar -zx --strip-components=1 -C /home/user/apache-maven-$MAVEN_VERSION/
 ENV TERM xterm
 
@@ -60,3 +69,4 @@ WORKDIR /projects
 
 CMD sudo /usr/sbin/sshd -D && \
     tail -f /dev/null
+    
