@@ -11,16 +11,16 @@ FROM codenvy/ubuntu_jre
 
 MAINTAINER mercuriete@gmail.com
 
-RUN echo "deb [arch=amd64] http://apt-mo.trafficmanager.net/repos/dotnet/ trusty main" | sudo tee --append /etc/apt/sources.list.d/dotnetdev.list && \
-    sudo apt-key adv --keyserver apt-mo.trafficmanager.net --recv-keys 417A0893 &&\
+RUN echo "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-release/ trusty main" > /etc/apt/sources.list.d/dotnetdev.list && \
+    sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 417A0893 &&\
     sudo apt-get update && \
-    sudo apt-get install dotnet-dev-1.0.0-preview2-003121 -y && \
+    sudo apt-get install dotnet-dev-1.0.1 -y && \
     sudo apt-get clean && \
     sudo apt-get -y autoremove && \
     sudo apt-get -y clean && \
     sudo rm -rf /var/lib/apt/lists/*
     
-RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+RUN curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
 RUN sudo apt-get install nodejs -y
 RUN sudo npm install -g yo bower grunt-cli gulp
 RUN sudo npm install -g generator-aspnet
